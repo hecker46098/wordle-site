@@ -7,6 +7,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div className="header-text">
+          Ben's Wordle Game
+        </div>
         <Game/>
       </header>
     </div>

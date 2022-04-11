@@ -13,6 +13,10 @@
   color: white;
 }
 
+.header-text {
+  font-size: calc(30px + 2vmin);
+}
+
 .box {
   background-color: #121213;
   border: 1px solid #fff;
@@ -135,5 +139,5 @@
 }
 
 .top-text {
-  font-size : 54px;
+  font-size : 36px;
 }
