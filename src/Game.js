@@ -7,10 +7,10 @@ import m_possibleAnswers from "./possible_answers";
 const validWords = m_validWords();
 const possibleAnswers = m_possibleAnswers();
 
-var secretWord = possibleAnswers[Math.floor(Math.random() * possibleAnswers.length)];
+var secretWord;
 
 const invalidMessage = "Not a valid word";
-const failureMessage = "The word was " + secretWord;
+const failureMessage = "The word was ";
 const successMessage = "Congratulations!";
 
 export default class Game extends React.Component {
@@ -21,29 +21,7 @@ export default class Game extends React.Component {
 
     constructor(props) {
         super(props);
-        var initialLetterStates = [];
-        for (let i = 0; i < 26; i++) {
-            initialLetterStates.push("UNUSED");
-        }
-        var initialBoxLetters = "";
-        for (let i = 0; i < 30; i++) {
-            initialBoxLetters += " ";
-        }
-        var initialBoxStates = [];
-        for (let i = 0; i < 30; i++) {
-            initialBoxStates.push("UNUSED");
-        }
-        for (let i = 0; i < 26; i++) {
-            this.keyPresses.push(false);
-        }
-
-        this.state = {
-            keyLetters : "QWERTYUIOPASDFGHJKLZXCVBNM",
-            keyStates : initialLetterStates,
-            boxLetters : initialBoxLetters,
-            boxStates : initialBoxStates,
-            topText : ""
-        };
+        this.state = this.start();
 
         document.addEventListener("keydown", (e) => {
             let index = this.state.keyLetters.indexOf(e.key.toUpperCase());
@@ -68,15 +46,36 @@ export default class Game extends React.Component {
                 this.backspacePressed = false;
             }
         });
-        // jQuery.get("http://localhost:3000/test.txt", function(data) {
-            
-        //     var lines = $("#div").html(data).split("\n");
-        //     for (let i = 0; i < lines.length; i++) {
-        //         validWords.push(lines[i]);
-        //     }
-        //     console.log(validWords);
-        // }, "text");
         }
+
+    start() {
+        this.currentBoxRow = 0;
+        secretWord = possibleAnswers[Math.floor(Math.random() * possibleAnswers.length)];
+
+        var initialLetterStates = [];
+        for (let i = 0; i < 26; i++) {
+            initialLetterStates.push("UNUSED");
+        }
+        var initialBoxLetters = "";
+        for (let i = 0; i < 30; i++) {
+            initialBoxLetters += " ";
+        }
+        var initialBoxStates = [];
+        for (let i = 0; i < 30; i++) {
+            initialBoxStates.push("UNUSED");
+        }
+        for (let i = 0; i < 26; i++) {
+            this.keyPresses.push(false);
+        }
+
+        return {
+            keyLetters : "QWERTYUIOPASDFGHJKLZXCVBNM",
+            keyStates : initialLetterStates,
+            boxLetters : initialBoxLetters,
+            boxStates : initialBoxStates,
+            topText : ""
+        };
+    }
 
     count(string, letter) {
         let result = 0;
@@ -116,7 +115,8 @@ export default class Game extends React.Component {
     }
 
     handleEnter(state) {
-        if (this.state.topText === successMessage || this.state.topText === failureMessage) {
+        if (this.state.topText === successMessage || this.state.topText === failureMessage + secretWord) {
+            this.setState(this.start());
             return;
         }
         var keyLetters = state.keyLetters;
@@ -175,13 +175,12 @@ export default class Game extends React.Component {
                 if (typedKeys === secretWord) {
                     topText = successMessage;
                 } else if (this.currentBoxRow >= 6) {
-                    topText = failureMessage;
+                    topText = failureMessage + secretWord;
                 }
             } else {
                 topText = invalidMessage;
             }
         }
-        // TODO
 
         this.setState({
             keyLetters : keyLetters,
