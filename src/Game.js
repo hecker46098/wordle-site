@@ -162,9 +162,11 @@ export default class Game extends React.Component {
                                 }
                             }
                         }
-                        if (!containsLetter && keyStates[keyLetters.indexOf(typedKeys[i])] !== "CORRECT") {
-                            boxStates[this.currentBoxRow * 5 + i] = "ABSENT";
-                            if (keyStates[keyLetters.indexOf(typedKeys[i])] !== "MISPLACED") {
+                        if (!containsLetter) {
+                            if (boxStates[this.currentBoxRow * 5 + i] === "UNUSED") {
+                                boxStates[this.currentBoxRow * 5 + i] = "ABSENT";
+                            }
+                            if (keyStates[keyLetters.indexOf(typedKeys[i])] === "UNUSED") {
                                 keyStates[keyLetters.indexOf(typedKeys[i])] = "ABSENT";
                             }
                         }
