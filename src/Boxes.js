@@ -15,6 +15,8 @@ export default class Boxes extends React.Component {
         return (
             <div>
                 <div className="boxes-row">
+                    <div className="box-left-space">
+                    </div>
                     {this.renderBox(0)}
                     {this.renderBox(1)}
                     {this.renderBox(2)}
@@ -22,6 +24,8 @@ export default class Boxes extends React.Component {
                     {this.renderBox(4)}
                 </div>
                 <div className="boxes-row">
+                    <div className="box-left-space">
+                    </div>
                     {this.renderBox(5)}
                     {this.renderBox(6)}
                     {this.renderBox(7)}
@@ -29,6 +33,8 @@ export default class Boxes extends React.Component {
                     {this.renderBox(9)}
                 </div>
                 <div className="boxes-row">
+                    <div className="box-left-space">
+                    </div>
                     {this.renderBox(10)}
                     {this.renderBox(11)}
                     {this.renderBox(12)}
@@ -36,6 +42,8 @@ export default class Boxes extends React.Component {
                     {this.renderBox(14)}
                 </div>
                 <div className="boxes-row">
+                    <div className="box-left-space">
+                    </div>
                     {this.renderBox(15)}
                     {this.renderBox(16)}
                     {this.renderBox(17)}
@@ -43,6 +51,8 @@ export default class Boxes extends React.Component {
                     {this.renderBox(19)}
                 </div>
                 <div className="boxes-row">
+                    <div className="box-left-space">
+                    </div>
                     {this.renderBox(20)}
                     {this.renderBox(21)}
                     {this.renderBox(22)}
@@ -50,12 +60,15 @@ export default class Boxes extends React.Component {
                     {this.renderBox(24)}
                 </div>
                 <div className="boxes-row">
+                    <div className="box-left-space">
+                    </div>
                     {this.renderBox(25)}
                     {this.renderBox(26)}
                     {this.renderBox(27)}
                     {this.renderBox(28)}
                     {this.renderBox(29)}
                 </div>
+                <p></p>
             </div>
         );
     }

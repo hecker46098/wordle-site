@@ -1,7 +1,5 @@
 import './App.css';
-import Boxes from './Boxes';
 import Game from './Game';
-import Keys from './Keys';
 
 function App() {
   return (

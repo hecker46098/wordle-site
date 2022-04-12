@@ -79,6 +79,15 @@
   display: table;
 }
 
+.box-left-space {
+  float: left;
+  height: 60px;
+  width: 140px;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 0;
+}
+
 .wide-key {
   border: 1px solid #fff;
   background-color : #747576;
